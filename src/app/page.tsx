@@ -9,6 +9,7 @@ import { SortableSelect } from '@/components/Shared'
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   const data = await getDevices(searchParams)
 
+  console.log(process.env.VERCEL_URL, 'vconsole.log(process.env.VERCEL_URL)')
   return (
     <Stack
       as='main'
