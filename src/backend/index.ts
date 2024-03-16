@@ -5,16 +5,17 @@ import { Device, SearchParams, Vulnerability } from 'types/devices'
 async function fetcher<T>(url: string, searchParams?: SearchParams): Promise<T | null> {
   const params = new URLSearchParams(searchParams).toString()
 
+  const baseURL = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'http://localhost:3000'
+
   try {
-    const res = await fetch(
-      `http://${process.env.VERCEL_URL ?? 'localhost:3000'}/api/${url}?${params}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+    const res = await fetch(`${baseURL}/api/${url}?${params}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    )
+    })
     return await res.json()
   } catch (error) {
     console.error(error)
