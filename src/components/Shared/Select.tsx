@@ -16,6 +16,7 @@ export const SortableSelect = ({ children }: Props) => {
   }
 
   console.log(process.env.VERCEL_URL, 'process.env.VERCEL_URL')
+  console.log(process.env.VERCEL_URL, 'process.env.VERCEL_URL')
 
   return (
     <Select
