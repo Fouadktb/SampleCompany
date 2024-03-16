@@ -8,5 +8,6 @@ interface Props extends LinkProps {
 }
 
 export const Link = ({ href, children }: Props) => {
+  console.log(process.env.VERCEL_URL)
   return <ChakraNextLink href={href}>{children}</ChakraNextLink>
 }
