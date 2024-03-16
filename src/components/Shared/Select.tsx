@@ -15,13 +15,6 @@ export const SortableSelect = ({ children }: Props) => {
     push(`?sort=${e.target.value}`)
   }
 
-  console.log(
-    process.env.NEXT_PUBLIC_VERCEL_ENV,
-    process.env.NEXT_PUBLIC_VERCEL_URL,
-    process.env.VERCEL_URL,
-    'process.env.VERCEL_URL',
-  )
-
   return (
     <Select
       flex={1}
