@@ -1,12 +1,8 @@
-'use client';
+'use client'
 
-import { ReactNode } from 'react';
-import { useRouter } from 'next/navigation';
-import { Select } from '@chakra-ui/react';
-
-
-
-
+import { ReactNode } from 'react'
+import { useRouter } from 'next/navigation'
+import { Select } from '@chakra-ui/react'
 
 interface Props {
   children: ReactNode
