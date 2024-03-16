@@ -1,13 +1,13 @@
 import { Suspense } from 'react'
-import { getDevices } from '@/backend'
+import { getVulnerabilities } from '@/backend'
 import { HStack, SimpleGrid, Stack, Text } from '@chakra-ui/react'
 import { SearchParams } from 'types/devices'
 
-import { DeviceCard } from '@/components/Home'
 import { SortableSelect } from '@/components/Shared'
+import { VulnerabilitiyCard } from '@/components/Vulnerabilities'
 
-export default async function Home({ searchParams }: { searchParams: SearchParams }) {
-  const data = await getDevices(searchParams)
+export default async function Vulnerabilities({ searchParams }: { searchParams: SearchParams }) {
+  const vulnerabilities = await getVulnerabilities(searchParams)
 
   return (
     <Stack
@@ -23,7 +23,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
         justify='center'
         width='full'
       >
-        <Text flex={2}>Devices with Vulnerabilities</Text>
+        <Text flex={2}>All Vulnerabilities</Text>
 
         <SortableSelect>
           <option value='asc'>Sort by Asc</option>
@@ -37,16 +37,12 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
         minChildWidth={350}
       >
         <Suspense fallback={<Text>Loading...</Text>}>
-          {Array.isArray(data) && data?.length > 0 ? (
-            data?.map(device => (
-              <DeviceCard
-                device={device}
-                key={device?.id}
-              />
-            ))
-          ) : (
-            <Text>No devices with Vulnerabilities found</Text>
-          )}
+          {vulnerabilities?.map(vulnerability => (
+            <VulnerabilitiyCard
+              key={vulnerability?.name}
+              vulnerability={vulnerability}
+            />
+          ))}
         </Suspense>
       </SimpleGrid>
     </Stack>
