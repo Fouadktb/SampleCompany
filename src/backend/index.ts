@@ -9,8 +9,6 @@ async function fetcher<T>(url: string, searchParams?: SearchParams): Promise<T |
     ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
     : 'http://localhost:3000'
 
-  console.log(baseURL, 'baseURL')
-
   try {
     const res = await fetch(`${baseURL}/api/${url}?${params}`, {
       method: 'GET',
