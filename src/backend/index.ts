@@ -20,7 +20,7 @@ async function fetcher<T>(url: string, searchParams?: SearchParams): Promise<T |
     })
     return await res.json()
   } catch (error) {
-    console.error(error)
+    console.error({ error, url, searchParams, baseURL })
     return null
   }
 }
