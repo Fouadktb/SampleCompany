@@ -5,8 +5,8 @@ import { Device, SearchParams, Vulnerability } from 'types/devices'
 async function fetcher<T>(url: string, searchParams?: SearchParams): Promise<T | null> {
   const params = new URLSearchParams(searchParams).toString()
 
-  const baseURL = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
+  const baseURL = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
     : 'http://localhost:3000'
 
   try {
