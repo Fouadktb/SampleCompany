@@ -1,5 +1,3 @@
-'use server'
-
 import { Device, SearchParams, Vulnerability } from 'types/devices'
 
 async function fetcher<T>(url: string, searchParams?: SearchParams): Promise<T | null> {

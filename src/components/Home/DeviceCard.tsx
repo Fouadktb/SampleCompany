@@ -11,6 +11,7 @@ interface Props {
 
 export const DeviceCard = async ({ device }: Props) => {
   const vulnerabilities = await getDeviceVulnerabilities({ id: device?.id })
+
   return (
     <Link
       href={`/${device?.id}`}
