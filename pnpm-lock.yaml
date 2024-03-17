@@ -26,6 +26,9 @@ dependencies:
   react:
     specifier: ^18
     version: 18.2.0
+  react-csv-downloader:
+    specifier: ^3.1.0
+    version: 3.1.0(react@18.2.0)
   react-dom:
     specifier: ^18
     version: 18.2.0(react@18.2.0)
@@ -2982,6 +2985,10 @@ packages:
       flat-cache: 3.2.0
     dev: true
 
+  /file-saver@2.0.5:
+    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
+    dev: false
+
   /fill-range@7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
     engines: {node: '>=8'}
@@ -3902,6 +3909,16 @@ packages:
       react: ^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@babel/runtime': 7.24.0
+      react: 18.2.0
+    dev: false
+
+  /react-csv-downloader@3.1.0(react@18.2.0):
+    resolution: {integrity: sha512-ART4CNMU89Y5OZQp9gR3IUlVt541djWwRfokQY+CYsGQjHNZFJAk6FvgOwLUNG0o/CxeUdexYjnMMFinMv4Xjg==}
+    engines: {npm: '>=7.0.0'}
+    peerDependencies:
+      react: ^16.6.3 || ^17.0.0 || ^18.0.0
+    dependencies:
+      file-saver: 2.0.5
       react: 18.2.0
     dev: false
 

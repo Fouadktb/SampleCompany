@@ -7,6 +7,13 @@ interface Props extends LinkProps {
   children: ReactNode
 }
 
-export const Link = ({ href, children }: Props) => {
-  return <ChakraNextLink href={href}>{children}</ChakraNextLink>
+export const Link = ({ href, children, ...rest }: Props) => {
+  return (
+    <ChakraNextLink
+      href={href}
+      {...rest}
+    >
+      {children}
+    </ChakraNextLink>
+  )
 }

@@ -1,26 +1,35 @@
-'use client'
-
-import { getDeviceVulnerabilities } from '@/backend'
-import { Link } from '@chakra-ui/next-js'
 import { Stack, Text } from '@chakra-ui/react'
 import { Device } from 'types/devices'
 
+import { Link } from '../Wrappers'
+
 interface Props {
   device: Device
+  isSelecting: boolean
+  isSelected: boolean
+  handleSelect: (device: Device) => void
 }
 
-export const DeviceCard = async ({ device }: Props) => {
-  const vulnerabilities = await getDeviceVulnerabilities({ id: device?.id })
-
+export const DeviceCard = ({ device, isSelecting, isSelected, handleSelect }: Props) => {
   return (
-    <Link
-      href={`/${device?.id}`}
-      key={device?.id}
+    <Stack
+      padding={12}
+      borderRadius='12px'
+      border='1px solid'
+      onClick={() => {
+        if (isSelecting) {
+          handleSelect(device)
+        }
+      }}
+      borderColor={isSelected ? 'blue' : 'gray'}
+      _hover={{
+        cursor: 'pointer',
+      }}
     >
-      <Stack
-        padding={12}
-        borderRadius='12px'
-        border='1px solid'
+      <Link
+        href={`/${device?.id}`}
+        pointerEvents={isSelecting ? 'none' : 'auto'}
+        key={device?.id}
       >
         <Text
           fontWeight='bold'
@@ -35,10 +44,7 @@ export const DeviceCard = async ({ device }: Props) => {
         <Text>Operating System: {device?.operating_system}</Text>
         <Text>Manufacturer: {device?.manufacturer}</Text>
         <Text>Open Ports: {device?.open_ports?.join(', ')}</Text>
-        <Text color={vulnerabilities && vulnerabilities?.length > 0 ? 'red' : 'green'}>
-          Vulnerabilities: {vulnerabilities?.length}
-        </Text>
-      </Stack>
-    </Link>
+      </Link>
+    </Stack>
   )
 }

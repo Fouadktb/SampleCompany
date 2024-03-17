@@ -1,10 +1,9 @@
-import { Suspense } from 'react'
 import { getVulnerabilities } from '@/backend'
-import { HStack, SimpleGrid, Stack, Text } from '@chakra-ui/react'
+import { HStack, Stack, Text } from '@chakra-ui/react'
 import { SearchParams } from 'types/devices'
 
 import { SortableSelect } from '@/components/Shared'
-import { VulnerabilitiyCard } from '@/components/Vulnerabilities'
+import { Selectablevulnerabilities } from '@/components/Vulnerabilities'
 
 export default async function Vulnerabilities({ searchParams }: { searchParams: SearchParams }) {
   const vulnerabilities = await getVulnerabilities(searchParams)
@@ -30,21 +29,7 @@ export default async function Vulnerabilities({ searchParams }: { searchParams: 
           <option value='desc'>Sort by Desc</option>
         </SortableSelect>
       </HStack>
-      <SimpleGrid
-        width='full'
-        py={12}
-        gap={4}
-        minChildWidth={350}
-      >
-        <Suspense fallback={<Text>Loading...</Text>}>
-          {vulnerabilities?.map(vulnerability => (
-            <VulnerabilitiyCard
-              key={vulnerability?.name}
-              vulnerability={vulnerability}
-            />
-          ))}
-        </Suspense>
-      </SimpleGrid>
+      {vulnerabilities && <Selectablevulnerabilities vulnerabilities={vulnerabilities} />}
     </Stack>
   )
 }

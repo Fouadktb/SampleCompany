@@ -1,13 +1,12 @@
-import { Suspense } from 'react'
 import { getDevices } from '@/backend'
-import { HStack, SimpleGrid, Stack, Text } from '@chakra-ui/react'
+import { HStack, Stack, Text } from '@chakra-ui/react'
 import { SearchParams } from 'types/devices'
 
-import { DeviceCard } from '@/components/Home'
+import { SelectableDevices } from '@/components/Home'
 import { SortableSelect } from '@/components/Shared'
 
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
-  const data = await getDevices(searchParams)
+  const devices = await getDevices(searchParams)
 
   return (
     <Stack
@@ -30,25 +29,7 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
           <option value='desc'>Sort by Desc</option>
         </SortableSelect>
       </HStack>
-      <SimpleGrid
-        width='full'
-        py={12}
-        gap={4}
-        minChildWidth={350}
-      >
-        <Suspense fallback={<Text>Loading...</Text>}>
-          {Array.isArray(data) && data?.length > 0 ? (
-            data?.map(device => (
-              <DeviceCard
-                device={device}
-                key={device?.id}
-              />
-            ))
-          ) : (
-            <Text>No devices with Vulnerabilities found</Text>
-          )}
-        </Suspense>
-      </SimpleGrid>
+      {devices && <SelectableDevices devices={devices} />}
     </Stack>
   )
 }
